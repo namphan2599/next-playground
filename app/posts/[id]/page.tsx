@@ -1,5 +1,22 @@
 import Link from "next/link";
 
+
+export async function generateStaticParams() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/posts");
+
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+
+
+  const posts = await res.json();
+
+  return posts.map((post) => ({ id: post.id.toString()}));
+}
+
+
+
 async function getPostById(id: string) {
   const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
 
