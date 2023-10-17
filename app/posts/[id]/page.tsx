@@ -32,9 +32,9 @@ export default async function Post({params}) {
   const postData = await getPostById(params.id)
   return (
     <div>
-      <Link href="/posts">Posts List</Link>
+      <Link href="/posts"> &larr; Back</Link>
       <h1>Title: {postData.title}</h1>
       <p>Body: {postData.body}</p>
     </div>
-  )
+  );
 }
